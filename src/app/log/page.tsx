@@ -1,21 +1,17 @@
 import { WorkoutSummary } from "@/components/common/workout-summary";
 import { db } from "@/server/db";
 export default async function LogPage() {
-  try {
-    const posts = await db.query.posts.findMany();
+  const posts = await db.query.posts.findMany();
 
-    return (
-      <div>
-        <WorkoutSummary />
-        {posts.map((post) => (
-          <div key={post.id}>
-            <h2>{post.name}</h2>
-          </div>
-        ))}
-      </div>
-    );
-  } catch (error) {
-    console.error("Database error:", error);
-    return <div>Error loading posts. Please try again later.</div>;
-  }
+  return (
+    <div>
+      <WorkoutSummary />
+
+      {posts.map((post) => (
+        <div key={post.id}>
+          <h2>{post.name}</h2>
+        </div>
+      ))}
+    </div>
+  );
 }
