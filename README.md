@@ -2,7 +2,8 @@
 
 ## TODOS - SETUP
 
-- [ ] Deployment pipeline
+- [x] Deployment pipeline
+- [x] UI Scaffolding
 - [ ] Add a database (postgres with vercel)
 - [ ] Add authentication (clerk)
 - [ ] Unify error handling (sentry)
