@@ -11,6 +11,7 @@
 - [ ] Analytics (posthog)
 - [ ] Logging (sentry)
 - [ ] Rate limiting (upstash)
+- [ ] Testing (vitest and playwright)
 
 ## TODOS - MVP
 
