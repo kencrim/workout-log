@@ -4,7 +4,7 @@
 
 - [x] Deployment pipeline
 - [x] UI Scaffolding
-- [ ] Add a database (postgres with vercel)
+- [x] Add a database (neon postgres)
 - [ ] Add authentication (clerk)
 - [ ] Unify error handling (sentry)
 - [ ] Routing structure (parallel routes)
