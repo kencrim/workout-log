@@ -12,6 +12,7 @@ specifiers:
   '@typescript-eslint/parser': ^8.1.0
   class-variance-authority: ^0.7.1
   clsx: ^2.1.1
+  dotenv: ^16.4.7
   drizzle-kit: ^0.24.0
   drizzle-orm: ^0.33.0
   eslint: ^8.57.0
@@ -38,6 +39,7 @@ dependencies:
   '@t3-oss/env-nextjs': 0.10.1_vcmnrneqrwvd2flif73iacoxje
   class-variance-authority: 0.7.1
   clsx: 2.1.1
+  dotenv: 16.4.7
   drizzle-orm: 0.33.0_qnf5oaurgj3eedkskytgfiefm4
   geist: 1.3.1_next@15.1.7
   lucide-react: 0.475.0_react@18.3.1
@@ -2033,6 +2035,11 @@ packages:
     dependencies:
       esutils: 2.0.3
     dev: true
+
+  /dotenv/16.4.7:
+    resolution: {integrity: sha512-47qPchRCykZC03FhkYAhrvwU4xDBFIj1QPqaarj6mdM/hgUzfPHcpkHJOn3mJAufFeeAxAzeGsr5X0M4k6fLZQ==}
+    engines: {node: '>=12'}
+    dev: false
 
   /drizzle-kit/0.24.2:
     resolution: {integrity: sha512-nXOaTSFiuIaTMhS8WJC2d4EBeIcN9OSt2A2cyFbQYBAZbi7lRsVGJNqDpEwPqYfJz38yxbY/UtbvBBahBfnExQ==}

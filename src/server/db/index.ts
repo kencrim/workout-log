@@ -1,17 +1,9 @@
+// src/db.ts
 import { drizzle } from "drizzle-orm/neon-http";
+import { neon } from "@neondatabase/serverless";
+import { config } from "dotenv";
 import * as schema from "./schema";
-import { neon, NeonQueryFunction } from "@neondatabase/serverless";
-import { env } from "@/env";
+config({ path: ".env" }); // or .env.local
 
-/**
- * Cache the database connection in development to creating a new connection on every HMR
- * update.
- */
-const globalForDb = globalThis as unknown as {
-  conn: NeonQueryFunction<any, any> | undefined;
-};
-
-const sql = globalForDb.conn ?? neon(process.env.DATABASE_URL!);
-if (env.NODE_ENV !== "production") globalForDb.conn = sql;
-
+const sql = neon(process.env.DATABASE_URL!);
 export const db = drizzle(sql, { schema });
