@@ -1,7 +1,7 @@
 import { drizzle } from "drizzle-orm/neon-http";
 import * as schema from "./schema";
 import { neon, NeonQueryFunction } from "@neondatabase/serverless";
-import { env } from "process";
+import { env } from "@/env";
 
 /**
  * Cache the database connection in development to creating a new connection on every HMR
