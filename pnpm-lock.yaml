@@ -13,7 +13,7 @@ specifiers:
   class-variance-authority: ^0.7.1
   clsx: ^2.1.1
   dotenv: ^16.4.7
-  drizzle-kit: ^0.24.0
+  drizzle-kit: ^0.30.4
   drizzle-orm: ^0.39.3
   eslint: ^8.57.0
   eslint-config-next: ^15.0.1
@@ -58,7 +58,7 @@ devDependencies:
   '@types/react-dom': 18.3.5_@types+react@18.3.18
   '@typescript-eslint/eslint-plugin': 8.24.1_icts26uzssk23bfpilhlpwh3vy
   '@typescript-eslint/parser': 8.24.1_wbebvbc4plqodte3ww5qk5g2la
-  drizzle-kit: 0.24.2
+  drizzle-kit: 0.30.4
   eslint: 8.57.1
   eslint-config-next: 15.1.7_wbebvbc4plqodte3ww5qk5g2la
   eslint-plugin-drizzle: 0.2.3_eslint@8.57.1
@@ -2041,8 +2041,8 @@ packages:
     engines: {node: '>=12'}
     dev: false
 
-  /drizzle-kit/0.24.2:
-    resolution: {integrity: sha512-nXOaTSFiuIaTMhS8WJC2d4EBeIcN9OSt2A2cyFbQYBAZbi7lRsVGJNqDpEwPqYfJz38yxbY/UtbvBBahBfnExQ==}
+  /drizzle-kit/0.30.4:
+    resolution: {integrity: sha512-B2oJN5UkvwwNHscPWXDG5KqAixu7AUzZ3qbe++KU9SsQ+cZWR4DXEPYcvWplyFAno0dhRJECNEhNxiDmFaPGyQ==}
     hasBin: true
     dependencies:
       '@drizzle-team/brocli': 0.10.2
