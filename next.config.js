@@ -45,6 +45,19 @@ const sentryConfig = {
 
   // Enables automatic instrumentation of Vercel Cron Monitors
   automaticVercelMonitors: true,
+
+  // Disable OpenTelemetry instrumentation
+  autoInstrumentServerFunctions: false,
+  autoInstrumentHttp: false,
+  enableTracing: false,
 };
 
-export default withSentryConfig(config, sentryConfig);
+let exportedConfig;
+
+if (process.env.NODE_ENV === "production") {
+  exportedConfig = withSentryConfig(config, sentryConfig);
+} else {
+  exportedConfig = config;
+}
+
+export default exportedConfig;

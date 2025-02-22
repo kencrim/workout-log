@@ -5,12 +5,11 @@
 - [x] Deployment pipeline
 - [x] UI Scaffolding
 - [x] Add a database (neon postgres)
-- [ ] Add authentication (clerk)
-- [ ] Unify error handling (sentry)
-- [ ] Routing structure (parallel routes)
+- [x] Add authentication (clerk)
+- [x] Unify error handling (sentry)
+- [x] Add tRPC
 - [ ] Analytics (posthog)
 - [ ] Logging (sentry)
-- [ ] Rate limiting (upstash)
 - [ ] Testing (vitest and playwright)
 
 ## TODOS - MVP
@@ -25,3 +24,4 @@
 
 - [ ] Add an automated workout generator
 - [ ] Add a way to track macros
+- [ ] Add a meal generator and shopping list

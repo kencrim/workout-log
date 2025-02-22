@@ -1,10 +1,9 @@
 import { WeekCalendar } from "@/components/common/calendar/week";
-import { db } from "@/server/db";
+import { LastWorkout } from "./_components/last-workout";
 export default async function LogPage() {
-  const posts = await db.query.posts.findMany();
-
   return (
     <div>
+      <LastWorkout />
       <WeekCalendar />
     </div>
   );
