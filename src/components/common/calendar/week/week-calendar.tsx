@@ -5,8 +5,19 @@ import { WeekCalendarHeader } from "./week-calendar-header";
 import { WeekCalendarNav } from "./week-calendar-nav";
 import { WeekCalendarGrid } from "./week-calendar-grid";
 import { WeekCalendarEvents } from "./week-calendar-events";
+import { ICalendarEvent } from "../types";
 
-export function WeekCalendar() {
+interface IWeekCalendarProps {
+  days: Date[];
+  events?: ICalendarEvent[];
+  overrideCurrentDate?: Date;
+}
+
+export function WeekCalendar({
+  days,
+  events,
+  overrideCurrentDate,
+}: IWeekCalendarProps) {
   const container = useRef<HTMLDivElement>(null);
   const containerNav = useRef<HTMLDivElement>(null);
   const containerOffset = useRef<HTMLDivElement>(null);
@@ -36,7 +47,7 @@ export function WeekCalendar() {
           style={{ width: "165%" }}
           className="flex max-w-full flex-none flex-col sm:max-w-none md:max-w-full"
         >
-          <WeekCalendarNav containerNav={containerNav} />
+          <WeekCalendarNav containerNav={containerNav} days={days} />
           <div className="flex flex-auto">
             <div className="sticky left-0 z-10 w-14 flex-none bg-white ring-1 ring-gray-100" />
             <div className="grid flex-auto grid-cols-1 grid-rows-1">
