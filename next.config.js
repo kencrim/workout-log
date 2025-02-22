@@ -52,12 +52,4 @@ const sentryConfig = {
   enableTracing: false,
 };
 
-let exportedConfig;
-
-if (process.env.NODE_ENV === "production") {
-  exportedConfig = withSentryConfig(config, sentryConfig);
-} else {
-  exportedConfig = config;
-}
-
-export default exportedConfig;
+export default withSentryConfig(config, sentryConfig);
