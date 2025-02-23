@@ -5,7 +5,7 @@ import { WeekCalendarHeader } from "./week-calendar-header";
 import { WeekCalendarNav } from "./week-calendar-nav";
 import { WeekCalendarGrid } from "./week-calendar-grid";
 import { WeekCalendarEvents } from "./week-calendar-events";
-import { ICalendarEvent } from "../types";
+import { type ICalendarEvent } from "../types";
 
 interface IWeekCalendarProps {
   days: Date[];

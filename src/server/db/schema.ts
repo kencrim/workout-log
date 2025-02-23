@@ -9,6 +9,7 @@ import {
   timestamp,
   varchar,
   text,
+  date,
 } from "drizzle-orm/pg-core";
 
 /**
@@ -46,6 +47,7 @@ export const workouts = createTable("workout", {
     () => new Date(),
   ),
   description: text("description"),
+  date: date("date").notNull(),
 });
 
 export const workoutEntries = createTable("workout_entry", {
