@@ -10,8 +10,8 @@ function WeekCalendarNavItem({ day }: { day: Date }) {
       <span
         className={`mt-1 flex size-8 items-center justify-center font-semibold ${
           isToday
-            ? "rounded-full bg-indigo-600 font-semibold text-white"
-            : "text-gray-900"
+            ? "rounded-full bg-green-800 font-semibold text-white"
+            : "text-zinc-400"
         }`}
       >
         {dayOfMonth}
@@ -36,8 +36,8 @@ function WeekCalendarNavItemShort({
         <span
           className={`items-center justify-center font-semibold ${
             isToday
-              ? "ml-1.5 flex size-8 items-center justify-center rounded-full bg-indigo-600 font-semibold text-white"
-              : "text-gray-900"
+              ? "ml-1.5 flex size-8 items-center justify-center rounded-full bg-green-800 font-semibold text-white"
+              : "text-zinc-400"
           }`}
         >
           {dayOfMonth}
@@ -57,7 +57,7 @@ export function WeekCalendarNav({
   return (
     <div
       ref={containerNav}
-      className="sticky top-0 z-30 flex-none bg-white shadow ring-1 ring-black/5 sm:pr-8"
+      className="sticky top-0 z-30 flex-none bg-zinc-800 shadow ring-1 ring-zinc-700 sm:pr-8"
     >
       <div className="grid grid-cols-7 text-sm/6 text-gray-500 sm:hidden">
         {days.map((day) => (
@@ -65,7 +65,7 @@ export function WeekCalendarNav({
         ))}
       </div>
 
-      <div className="-mr-px hidden grid-cols-7 divide-x divide-gray-100 border-r border-gray-100 text-sm/6 text-gray-500 sm:grid">
+      <div className="-mr-px hidden grid-cols-7 divide-x divide-zinc-700 border-r border-zinc-700 text-sm/6 text-gray-500 sm:grid">
         <div className="col-end-1 w-14" />
 
         {days.map((day) => (

@@ -36,7 +36,7 @@ export function WeekCalendarGrid({
     <>
       {/* Horizontal lines */}
       <div
-        className="col-start-1 col-end-2 row-start-1 grid divide-y divide-gray-100"
+        className="col-start-1 col-end-2 row-start-1 grid divide-y divide-zinc-800"
         style={{ gridTemplateRows: "repeat(48, minmax(2.5rem, 1fr))" }}
       >
         <div ref={containerOffset} className="row-end-1 h-7"></div>
@@ -52,7 +52,7 @@ export function WeekCalendarGrid({
         ))}
       </div>
       {/* Vertical lines */}
-      <div className="col-start-1 col-end-2 row-start-1 hidden grid-cols-7 grid-rows-1 divide-x divide-gray-100 sm:grid sm:grid-cols-7">
+      <div className="col-start-1 col-end-2 row-start-1 hidden grid-cols-7 grid-rows-1 divide-x divide-zinc-800 sm:grid sm:grid-cols-7">
         <div className="col-start-1 row-span-full" />
         <div className="col-start-2 row-span-full" />
         <div className="col-start-3 row-span-full" />
