@@ -40,6 +40,7 @@ export const posts = createTable(
 export const workouts = createTable("workout", {
   id: integer("id").primaryKey().generatedByDefaultAsIdentity(),
   name: varchar("name", { length: 256 }),
+  userId: varchar("user_id", { length: 256 }),
   createdAt: timestamp("created_at", { withTimezone: true })
     .default(sql`CURRENT_TIMESTAMP`)
     .notNull(),
