@@ -1,7 +1,5 @@
-import { db } from "@/server/db";
-import { workouts } from "@/server/db/schema";
-import { eq, desc } from "drizzle-orm";
 import { currentUser } from "@clerk/nextjs/server";
+import { getWorkouts } from "@/server/queries";
 export async function WorkoutList() {
   const user = await currentUser();
 
@@ -10,11 +8,7 @@ export async function WorkoutList() {
   }
 
   // Select all workouts
-  const selectedWorkouts = await db
-    .select()
-    .from(workouts)
-    .where(eq(workouts.userId, user?.id))
-    .orderBy(desc(workouts.createdAt));
+  const selectedWorkouts = await getWorkouts();
 
   return (
     <div>
