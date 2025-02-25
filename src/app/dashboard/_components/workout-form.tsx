@@ -1,29 +1,60 @@
-import { createWorkout } from "@/server/queries";
+"use client";
 
-export function WorkoutForm() {
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { FormInput } from "@/components/common/form/form-input";
+import { Button } from "@/components/ui/button";
+import { Form } from "@/components/ui/form";
+import { useState } from "react";
+import { FormDateInput } from "@/components/common/form/form-date-input";
+
+const workoutSchema = z.object({
+  name: z.string().min(1),
+  date: z.date(),
+});
+
+export function WorkoutForm({
+  action,
+}: {
+  action: (formData: FormData) => Promise<void>;
+}) {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const form = useForm<z.infer<typeof workoutSchema>>({
+    resolver: zodResolver(workoutSchema),
+    defaultValues: {
+      name: "",
+      date: new Date(),
+    },
+  });
+
+  const handleSubmit = async (data: z.infer<typeof workoutSchema>) => {
+    setIsSubmitting(true);
+    const formData = new FormData();
+    formData.append("name", data.name);
+    formData.append("date", data.date.toISOString());
+    await action(formData);
+    setIsSubmitting(false);
+    form.reset();
+  };
+
   return (
-    <div>
+    <Form {...form}>
       <form
-        action={async (formData) => {
-          "use server";
-          const name = formData.get("name") as string;
-          const date = formData.get("date") as string;
-          if (!name || !date) {
-            throw new Error("Invalid form data");
-          }
-          await createWorkout({ name, date });
-        }}
+        onSubmit={form.handleSubmit(handleSubmit)}
+        action={action}
+        className="flex max-w-80 flex-col gap-4 rounded-lg border border-slate-200 bg-slate-800 p-4"
       >
-        <div>
-          <label htmlFor="name">Name</label>
-          <input type="text" id="name" name="name" className="bg-zinc-600" />
-        </div>
-        <div>
-          <label htmlFor="date">Date</label>
-          <input type="date" id="date" name="date" className="bg-zinc-600" />
-        </div>
-        <button type="submit">Create</button>
+        <h1 className="text-xl font-semibold">Add Workout</h1>
+
+        <FormInput label="Name" name="name" control={form.control} />
+
+        <FormDateInput label="Date" name="date" control={form.control} />
+
+        <Button variant="default" type="submit" disabled={isSubmitting}>
+          {isSubmitting ? "Submitting..." : "Create"}
+        </Button>
       </form>
-    </div>
+    </Form>
   );
 }

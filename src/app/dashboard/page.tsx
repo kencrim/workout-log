@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import { WorkoutForm } from "./_components/workout-form";
 import { WorkoutList } from "./_components/workout-list";
 import { Suspense } from "react";
-
+import { createWorkoutAction } from "./actions";
 export default async function DashboardPage() {
   const user = await currentUser();
   if (!user) {
@@ -14,9 +14,9 @@ export default async function DashboardPage() {
       <h1>Welcome back, {user.firstName}</h1>
       <Suspense fallback={<div>Loading...</div>}>
         <h3>Here&apos;s your workout schedule for the day</h3>
-        <WorkoutForm />
         <WorkoutList />
       </Suspense>
+      <WorkoutForm action={createWorkoutAction} />
     </div>
   );
 }
