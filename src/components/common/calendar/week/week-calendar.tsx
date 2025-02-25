@@ -41,7 +41,7 @@ export function WeekCalendar({
       <WeekCalendarHeader />
       <div
         ref={container}
-        className="isolate flex flex-auto flex-col overflow-auto rounded-lg bg-zinc-900"
+        className="isolate flex flex-auto flex-col overflow-auto rounded-lg bg-card"
       >
         <div
           style={{ width: "165%" }}
@@ -49,7 +49,7 @@ export function WeekCalendar({
         >
           <WeekCalendarNav containerNav={containerNav} days={days} />
           <div className="flex flex-auto">
-            <div className="sticky left-0 z-10 w-14 flex-none bg-zinc-800 ring-1 ring-zinc-700" />
+            <div className="sticky left-0 z-10 w-14 flex-none bg-card ring-1 ring-border" />
             <div className="grid flex-auto grid-cols-1 grid-rows-1">
               {/* Grid - Controls the actual layout of the calendar */}
               <WeekCalendarGrid containerOffset={containerOffset} />

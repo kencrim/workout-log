@@ -36,14 +36,14 @@ export function WeekCalendarGrid({
     <>
       {/* Horizontal lines */}
       <div
-        className="col-start-1 col-end-2 row-start-1 grid divide-y divide-zinc-800"
+        className="col-start-1 col-end-2 row-start-1 grid divide-y divide-border/50"
         style={{ gridTemplateRows: "repeat(48, minmax(2.5rem, 1fr))" }}
       >
         <div ref={containerOffset} className="row-end-1 h-7"></div>
         {TIMES.map((t) => (
           <React.Fragment key={t}>
             <div>
-              <div className="sticky left-0 z-20 -ml-14 -mt-2.5 w-14 pr-2 text-right text-xs/5 text-gray-400">
+              <div className="sticky left-0 z-20 -ml-14 -mt-2.5 w-14 pr-2 text-right text-xs/5 text-muted-foreground">
                 {t}
               </div>
             </div>
@@ -52,7 +52,7 @@ export function WeekCalendarGrid({
         ))}
       </div>
       {/* Vertical lines */}
-      <div className="col-start-1 col-end-2 row-start-1 hidden grid-cols-7 grid-rows-1 divide-x divide-zinc-800 sm:grid sm:grid-cols-7">
+      <div className="col-start-1 col-end-2 row-start-1 hidden grid-cols-7 grid-rows-1 divide-x divide-border/50 sm:grid sm:grid-cols-7">
         <div className="col-start-1 row-span-full" />
         <div className="col-start-2 row-span-full" />
         <div className="col-start-3 row-span-full" />

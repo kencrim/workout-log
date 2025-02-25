@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  @apply bg-zinc-900 text-white;
-}
-
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -20,7 +16,7 @@ body {
 
     --popover-foreground: 240 10% 3.9%;
 
-    --primary: 240 5.9% 10%;
+    --primary: 173 58% 39%;
 
     --primary-foreground: 0 0% 98%;
 
@@ -71,9 +67,9 @@ body {
 
     --popover-foreground: 0 0% 98%;
 
-    --primary: 0 0% 98%;
+    --primary: 160 60% 45%;
 
-    --primary-foreground: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
 
     --secondary: 240 3.7% 15.9%;
 
@@ -117,8 +113,6 @@ body {
     @apply bg-background text-foreground;
   }
 }
-
-
 
 @layer base {
   * {

@@ -25,10 +25,11 @@ export function DatePicker({
     <Popover>
       <PopoverTrigger asChild>
         <Button
+          variant="outline"
           className={cn(
             "w-[240px] justify-start text-left font-normal",
             !date && "text-muted-foreground",
-            "w-full border border-slate-200 bg-transparent",
+            "w-full",
           )}
         >
           <CalendarIcon />
