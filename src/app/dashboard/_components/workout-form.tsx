@@ -61,7 +61,7 @@ export function WorkoutForm({
     },
   });
 
-  const { fields, append, remove } = useFieldArray({
+  const { fields, append, remove, update } = useFieldArray({
     control: form.control,
     name: "exercises",
   });
@@ -120,14 +120,15 @@ export function WorkoutForm({
       <form
         onSubmit={form.handleSubmit(handleSubmit)}
         action={action}
-        className="flex w-full flex-col gap-3"
+        className="flex w-full flex-col gap-4"
       >
-        <FormInput label="Name" name="name" control={form.control} />
-
-        <FormDateInput label="Date" name="date" control={form.control} />
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <FormInput label="Name" name="name" control={form.control} />
+          <FormDateInput label="Date" name="date" control={form.control} />
+        </div>
 
         {/* Exercises Section */}
-        <div className="space-y-3">
+        <div className="mt-2 space-y-4">
           <div className="flex items-center justify-between">
             <h2 className="text-lg font-medium">Exercises</h2>
             <Button
@@ -145,7 +146,7 @@ export function WorkoutForm({
           {fields.map((field, exerciseIndex) => (
             <div
               key={field.id}
-              className="space-y-2 rounded-md border border-border/70 p-3"
+              className="space-y-3 rounded-md border border-border/70 p-4"
             >
               <div className="flex items-center justify-between">
                 <div className="flex-1">
@@ -171,7 +172,7 @@ export function WorkoutForm({
               </div>
 
               {/* Sets Section */}
-              <div className="space-y-2">
+              <div className="space-y-3">
                 <div className="flex items-center justify-between">
                   <h3 className="text-sm font-medium">Sets</h3>
                   <Button
@@ -184,17 +185,19 @@ export function WorkoutForm({
                   </Button>
                 </div>
 
-                {form
-                  .watch(`exercises.${exerciseIndex}.sets`)
-                  ?.map((set, setIndex) => (
-                    <FormSetInput
-                      key={setIndex}
-                      exerciseIndex={exerciseIndex}
-                      setIndex={setIndex}
-                      control={form.control}
-                      onRemove={() => removeSet(exerciseIndex, setIndex)}
-                    />
-                  ))}
+                <div className="grid gap-2 sm:grid-cols-2 md:grid-cols-3">
+                  {form
+                    .watch(`exercises.${exerciseIndex}.sets`)
+                    ?.map((set, setIndex) => (
+                      <FormSetInput
+                        key={setIndex}
+                        exerciseIndex={exerciseIndex}
+                        setIndex={setIndex}
+                        control={form.control}
+                        onRemove={() => removeSet(exerciseIndex, setIndex)}
+                      />
+                    ))}
+                </div>
               </div>
             </div>
           ))}
@@ -204,9 +207,10 @@ export function WorkoutForm({
           variant="default"
           type="submit"
           disabled={isSubmitting}
-          className="mt-2"
+          className="mt-4"
+          size="lg"
         >
-          {isSubmitting ? "Submitting..." : "Create"}
+          {isSubmitting ? "Submitting..." : "Create Workout"}
         </Button>
       </form>
     </Form>
