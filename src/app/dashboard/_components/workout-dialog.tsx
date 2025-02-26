@@ -1,17 +1,15 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { AnimatePresence } from "motion/react";
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
-  SheetClose,
 } from "@/components/ui/sheet";
 import { WorkoutForm } from "./workout-form";
-import { X } from "lucide-react";
-import { Button } from "@/components/ui/button";
+
+import { createWorkoutAction } from "@/app/dashboard/actions";
 
 interface WorkoutDialogProps {
   isOpen: boolean;
@@ -19,14 +17,6 @@ interface WorkoutDialogProps {
 }
 
 export function WorkoutDialog({ isOpen, onClose }: WorkoutDialogProps) {
-  // Mock action for the form - replace with actual server action
-  const handleFormSubmit = async (formData: FormData) => {
-    console.log("Form submitted:", Object.fromEntries(formData.entries()));
-    // Here you would typically call a server action to save the workout
-    // await createWorkout(formData);
-    onClose();
-  };
-
   return (
     <AnimatePresence>
       {isOpen && (
@@ -43,7 +33,10 @@ export function WorkoutDialog({ isOpen, onClose }: WorkoutDialogProps) {
               </div>
 
               <div className="flex-1 overflow-auto p-6">
-                <WorkoutForm action={handleFormSubmit} />
+                <WorkoutForm
+                  action={createWorkoutAction}
+                  onSubmitComplete={onClose}
+                />
               </div>
             </div>
           </SheetContent>

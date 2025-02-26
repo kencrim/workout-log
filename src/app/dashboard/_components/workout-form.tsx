@@ -44,10 +44,12 @@ type Exercise = {
 
 export function WorkoutForm({
   action,
-  exercises = sampleExercises, // In a real app, this would be passed as a prop
+  exercises = sampleExercises,
+  onSubmitComplete,
 }: {
   action: (formData: FormData) => Promise<void>;
   exercises?: Exercise[];
+  onSubmitComplete?: () => void;
 }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const form = useForm<z.infer<typeof workoutSchema>>({
@@ -78,6 +80,7 @@ export function WorkoutForm({
     await action(formData);
     setIsSubmitting(false);
     form.reset();
+    onSubmitComplete?.();
   };
 
   // Function to add a set to an exercise
