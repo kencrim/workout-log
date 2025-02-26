@@ -28,11 +28,7 @@ export async function WorkoutList() {
         ) : (
           <div className="space-y-2">
             {selectedWorkouts.map((workout) => (
-              <Link
-                href={`/dashboard/workouts/${workout.id}`}
-                key={workout.id}
-                className="block"
-              >
+              <Link href={`#`} key={workout.id} className="block">
                 <div className="group flex items-center rounded-lg bg-primary p-2 text-xs hover:bg-primary/80">
                   <div className="mr-2 flex h-6 w-6 items-center justify-center rounded-full bg-primary-foreground/20">
                     <BicepsFlexed
