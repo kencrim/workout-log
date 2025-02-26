@@ -10,6 +10,7 @@ import { useState } from "react";
 import { FormDateInput } from "@/components/common/form/form-date-input";
 import { FormSelect } from "@/components/common/form/form-select";
 import { FormSetInput } from "@/components/common/form/form-set-input";
+import { useActionState } from "react";
 import { Plus, X } from "lucide-react";
 
 // Example exercises - in a real app, these would come from the database
@@ -116,16 +117,14 @@ export function WorkoutForm({
       <form
         onSubmit={form.handleSubmit(handleSubmit)}
         action={action}
-        className="flex max-w-80 flex-col gap-4 rounded-lg border border-border bg-card p-4"
+        className="flex w-full flex-col gap-3"
       >
-        <h1 className="text-xl font-semibold">Add Workout</h1>
-
         <FormInput label="Name" name="name" control={form.control} />
 
         <FormDateInput label="Date" name="date" control={form.control} />
 
         {/* Exercises Section */}
-        <div className="space-y-4">
+        <div className="space-y-3">
           <div className="flex items-center justify-between">
             <h2 className="text-lg font-medium">Exercises</h2>
             <Button
@@ -143,7 +142,7 @@ export function WorkoutForm({
           {fields.map((field, exerciseIndex) => (
             <div
               key={field.id}
-              className="space-y-3 rounded-md border border-border/70 p-3"
+              className="space-y-2 rounded-md border border-border/70 p-3"
             >
               <div className="flex items-center justify-between">
                 <div className="flex-1">
@@ -198,7 +197,12 @@ export function WorkoutForm({
           ))}
         </div>
 
-        <Button variant="default" type="submit" disabled={isSubmitting}>
+        <Button
+          variant="default"
+          type="submit"
+          disabled={isSubmitting}
+          className="mt-2"
+        >
           {isSubmitting ? "Submitting..." : "Create"}
         </Button>
       </form>

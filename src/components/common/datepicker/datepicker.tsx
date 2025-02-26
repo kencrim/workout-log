@@ -17,14 +17,17 @@ import { SelectSingleEventHandler } from "react-day-picker";
 export function DatePicker({
   date,
   onSelect,
+  disabled,
 }: {
   date: Date;
   onSelect: SelectSingleEventHandler;
+  disabled?: boolean;
 }) {
   return (
     <Popover>
       <PopoverTrigger asChild>
         <Button
+          disabled={disabled}
           variant="outline"
           className={cn(
             "w-[240px] justify-start text-left font-normal",
@@ -42,6 +45,7 @@ export function DatePicker({
           selected={date}
           onSelect={onSelect}
           initialFocus
+          disabled={disabled}
         />
       </PopoverContent>
     </Popover>

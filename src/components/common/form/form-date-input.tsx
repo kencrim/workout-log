@@ -13,10 +13,12 @@ export function FormDateInput({
   label,
   name,
   control,
+  disabled,
 }: {
   label: string;
   name: string;
   control: Control<any>;
+  disabled?: boolean;
 }) {
   return (
     <FormField
@@ -26,7 +28,11 @@ export function FormDateInput({
         <FormItem>
           <FormLabel>{label}</FormLabel>
           <FormControl>
-            <DatePicker date={field.value} onSelect={field.onChange} />
+            <DatePicker
+              date={field.value}
+              onSelect={field.onChange}
+              disabled={disabled}
+            />
           </FormControl>
           <FormMessage />
         </FormItem>

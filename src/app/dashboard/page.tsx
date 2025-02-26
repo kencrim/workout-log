@@ -1,9 +1,7 @@
 import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
-import { WorkoutForm } from "./_components/workout-form";
 import { WorkoutList } from "./_components/workout-list";
 import { Suspense } from "react";
-import { createWorkoutAction } from "./actions";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "lucide-react";
@@ -14,7 +12,7 @@ export default async function DashboardPage() {
     redirect("/sign-in");
   }
 
-  // Format current date
+  // Format current date TODO: move to utils, and unify date across app
   const today = new Date();
   const formattedDate = today.toLocaleDateString("en-US", {
     weekday: "long",
@@ -40,11 +38,11 @@ export default async function DashboardPage() {
           </Link>
         </div>
       </div>
-      <Suspense fallback={<div>Loading...</div>}>
-        <h3>Here&apos;s today:</h3>
-        <WorkoutList />
-      </Suspense>
-      <WorkoutForm action={createWorkoutAction} />
+      <div className="flex w-full gap-4 p-8">
+        <Suspense fallback={<div>Loading...</div>}>
+          <WorkoutList />
+        </Suspense>
+      </div>
     </div>
   );
 }
