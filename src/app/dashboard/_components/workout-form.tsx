@@ -8,15 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { useState } from "react";
 import { FormDateInput } from "@/components/common/form/form-date-input";
-import { FormSelect } from "@/components/common/form/form-select";
-import { FormSetInput } from "@/components/common/form/form-set-input";
-import { Plus, X } from "lucide-react";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { Plus } from "lucide-react";
 import { WorkoutExercisesField } from "./workout-exercises-field";
 
 // Example exercises - in a real app, these would come from the database

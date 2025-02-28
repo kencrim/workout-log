@@ -18,7 +18,7 @@ export async function WorkoutList() {
   return (
     <Card className="h-full max-w-lg flex-grow">
       <CardHeader>
-        <CardTitle className="text-lg">Today's Activity</CardTitle>
+        <CardTitle className="text-lg">Today&apos;s Activity</CardTitle>
       </CardHeader>
       <CardContent className="p-4">
         {selectedWorkouts.length === 0 ? (
