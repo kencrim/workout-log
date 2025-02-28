@@ -48,7 +48,9 @@ export function WorkoutDialog({ isOpen, onClose }: WorkoutDialogProps) {
 
               <div className="max-h-[80vh] overflow-y-auto p-6">
                 <WorkoutForm
-                  action={createWorkoutAction}
+                  action={async (formData) => {
+                    console.log(formData);
+                  }}
                   onSubmitComplete={onClose}
                 />
               </div>

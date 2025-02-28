@@ -10,8 +10,14 @@ import { useState } from "react";
 import { FormDateInput } from "@/components/common/form/form-date-input";
 import { FormSelect } from "@/components/common/form/form-select";
 import { FormSetInput } from "@/components/common/form/form-set-input";
-import { useActionState } from "react";
 import { Plus, X } from "lucide-react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { WorkoutExercisesField } from "./workout-exercises-field";
 
 // Example exercises - in a real app, these would come from the database
 const sampleExercises = [
@@ -31,10 +37,10 @@ const exerciseSchema = z.object({
   sets: z.array(setSchema).min(1, "Add at least one set"),
 });
 
-const workoutSchema = z.object({
+export const workoutSchema = z.object({
   name: z.string().min(1),
   date: z.date(),
-  exercises: z.array(exerciseSchema).optional(),
+  exercises: z.array(exerciseSchema),
 });
 
 type Exercise = {
@@ -66,6 +72,11 @@ export function WorkoutForm({
     name: "exercises",
   });
 
+  // Log the form data
+  form.watch((value) => {
+    console.log(value);
+  });
+
   const handleSubmit = async (data: z.infer<typeof workoutSchema>) => {
     setIsSubmitting(true);
     const formData = new FormData();
@@ -83,38 +94,6 @@ export function WorkoutForm({
     onSubmitComplete?.();
   };
 
-  // Function to add a set to an exercise
-  const addSet = (exerciseIndex: number) => {
-    const exercises = form.getValues("exercises") || [];
-    if (exercises && exercises[exerciseIndex]) {
-      const updatedExercises = [...exercises];
-      const currentExercise = updatedExercises[exerciseIndex] as z.infer<
-        typeof exerciseSchema
-      >;
-      const sets = currentExercise.sets || [];
-      currentExercise.sets = [...sets, { reps: "", weight: "" }];
-      form.setValue("exercises", updatedExercises);
-    }
-  };
-
-  // Function to remove a set from an exercise
-  const removeSet = (exerciseIndex: number, setIndex: number) => {
-    const exercises = form.getValues("exercises") || [];
-    if (exercises && exercises[exerciseIndex]) {
-      const currentExercise = exercises[exerciseIndex] as z.infer<
-        typeof exerciseSchema
-      >;
-      if (currentExercise.sets && currentExercise.sets.length > 1) {
-        const updatedExercises = [...exercises];
-        const updatedExercise = updatedExercises[exerciseIndex] as z.infer<
-          typeof exerciseSchema
-        >;
-        updatedExercise.sets.splice(setIndex, 1);
-        form.setValue("exercises", updatedExercises);
-      }
-    }
-  };
-
   return (
     <Form {...form}>
       <form
@@ -128,7 +107,7 @@ export function WorkoutForm({
         </div>
 
         {/* Exercises Section */}
-        <div className="mt-2 space-y-4">
+        <div className="mt-2 space-y-2">
           <div className="flex items-center justify-between">
             <h2 className="text-lg font-medium">Exercises</h2>
             <Button
@@ -142,65 +121,11 @@ export function WorkoutForm({
               <Plus className="mr-1 h-4 w-4" /> Add Exercise
             </Button>
           </div>
-
-          {fields.map((field, exerciseIndex) => (
-            <div
-              key={field.id}
-              className="space-y-3 rounded-md border border-border/70 p-4"
-            >
-              <div className="flex items-center justify-between">
-                <div className="flex-1">
-                  <FormSelect
-                    label="Exercise"
-                    name={`exercises.${exerciseIndex}.exerciseId`}
-                    control={form.control}
-                    options={exercises.map((exercise) => ({
-                      value: exercise.id,
-                      label: exercise.name,
-                    }))}
-                  />
-                </div>
-                <Button
-                  type="button"
-                  variant="ghost"
-                  size="sm"
-                  className="ml-2 mt-6"
-                  onClick={() => remove(exerciseIndex)}
-                >
-                  <X className="h-4 w-4" />
-                </Button>
-              </div>
-
-              {/* Sets Section */}
-              <div className="space-y-3">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-sm font-medium">Sets</h3>
-                  <Button
-                    type="button"
-                    variant="outline"
-                    size="sm"
-                    onClick={() => addSet(exerciseIndex)}
-                  >
-                    <Plus className="mr-1 h-3 w-3" /> Add Set
-                  </Button>
-                </div>
-
-                <div className="grid gap-2 sm:grid-cols-2 md:grid-cols-3">
-                  {form
-                    .watch(`exercises.${exerciseIndex}.sets`)
-                    ?.map((set, setIndex) => (
-                      <FormSetInput
-                        key={setIndex}
-                        exerciseIndex={exerciseIndex}
-                        setIndex={setIndex}
-                        control={form.control}
-                        onRemove={() => removeSet(exerciseIndex, setIndex)}
-                      />
-                    ))}
-                </div>
-              </div>
-            </div>
-          ))}
+          <WorkoutExercisesField
+            form={form}
+            onDelete={() => {}}
+            exercises={fields}
+          />
         </div>
 
         <Button
